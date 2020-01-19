@@ -113,8 +113,8 @@ var trivia = {
     
     ],
     
-    correctAnswers: [],
-    wrongAnswers: [],
+    correctAnswers: 0,
+    wrongAnswers: 0,
 
 }
 
@@ -124,27 +124,31 @@ let curQ;
 //3. Grab a random object from game.questionArr 
 function rQuestion(){
     
-    var q = trivia.questionsArr[Math.floor(Math.random() * trivia.questionsArr.length)]
+    var q = trivia.questionsArr[Math.floor(Math.random() * trivia.questionsArr.length)];
+    
     if (q.isAsked === false){
         // console.log(q);
         curQ = q
         q.isAsked = true;
     }else {
-        //gameover function
+        alert("Game over!")
     }
 
 }
 //display Q on the screen.
 
 function buildCard(){
-    var gameDiv = $('<div class= gameDiv>')
+    var gameDiv = $('<form class= gameDiv>')
     $("#main").append(gameDiv);
     var q = $('<h2 id = question>' + curQ.question + '</h2>');
-    var a = $('<input type = "radio" value = "a" name = "a" > ' + curQ.A + '</p>');
-    var b = $('<input type = "radio" value = "a" name = "a" > ' + curQ.B + '</p>') ;
-    var c = $('<input type = "radio" value = "a" name = "a" > ' + curQ.C + '</p>');
-    var d = $('<input type = "radio" value = "a" name = "a" > ' + curQ.D + '</p>');
-    $(".gameDiv").append(q,a,b,c,d);
+    var a = $('<input type = "radio" value = "A" name = "a" id = "a" > ' + curQ.A + '</p>');
+    var b = $('<input type = "radio" value = "B" name = "a" id = "b" > ' + curQ.B + '</p>') ;
+    var c = $('<input type = "radio" value = "C" name = "a" id = "c" > ' + curQ.C + '</p>');
+    var d = $('<input type = "radio" value = "D" name = "a" id = "d" > ' + curQ.D + '</p>');
+    var submit = $('<button id = submit>')
+    $(".gameDiv").append(q,a,b,c,d,submit);
+    submit.text("Submit")
+    
 }
 
 function clock(){
@@ -157,14 +161,23 @@ function clock(){
 function userAnswer(){
    
     $("#submit").on("click", function() {
-
-
-
+       var value = $('input[name="a"]:checked').val();
+        if ( value === curQ.answer ){
+            console.log("Correct")
+            trivia.correctAnswers++
+            console.log(trivia.correctAnswers)
+        }else {
+            console.log("Wrong")
+            trivia.wrongAnswers++
+            console.log(trivia.wrongAnswers)
+        }
     })
 
 }
 rQuestion()
 buildCard()
+userAnswer()
+
 //4. Start a timer of 30 secs and display question
     //4a. if question is answered correctly display correct text and increment game.correctAnswers by 1
     //4b. if answer is incorrect display incorrect text and increment game.wrongAnswers by 1
