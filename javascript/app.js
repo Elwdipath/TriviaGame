@@ -129,24 +129,42 @@ function rQuestion(){
         // console.log(q);
         curQ = q
         q.isAsked = true;
-    }//TODO!: Else statement when all questions are set to true
+    }else {
+        //gameover function
+    }
 
 }
 //display Q on the screen.
 
 function buildCard(){
-
-    $("#question").html('<h3>'+curQ.question+'</h3>')
-    $("#A").html('<input type = "radio" id = "A">' + curQ.A)
-    $("#B").html('<input type = "radio" id = "B">' + curQ.B)
-    $("#C").html('<input type = "radio" id = "C">' + curQ.C)
-    $("#D").html('<input type = "radio" id = "D">' + curQ.D)
+    var gameDiv = $('<div class= gameDiv>')
+    $("#main").append(gameDiv);
+    var q = $('<h2 id = question>' + curQ.question + '</h2>');
+    var a = $('<input type = "radio" value = "a" name = "a" > ' + curQ.A + '</p>');
+    var b = $('<input type = "radio" value = "a" name = "a" > ' + curQ.B + '</p>') ;
+    var c = $('<input type = "radio" value = "a" name = "a" > ' + curQ.C + '</p>');
+    var d = $('<input type = "radio" value = "a" name = "a" > ' + curQ.D + '</p>');
+    $(".gameDiv").append(q,a,b,c,d);
 }
 
+function clock(){
+    //TODO! Figure out timers....
+    clearInterval(timer);
+    timer = setInterval()
 
+}
+
+function userAnswer(){
+   
+    $("#submit").on("click", function() {
+
+
+
+    })
+
+}
 rQuestion()
 buildCard()
-
 //4. Start a timer of 30 secs and display question
     //4a. if question is answered correctly display correct text and increment game.correctAnswers by 1
     //4b. if answer is incorrect display incorrect text and increment game.wrongAnswers by 1
