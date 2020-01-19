@@ -18,9 +18,9 @@ var trivia = {
         // two:
             question: "Which vegetable was considered poisonous in Medieval times but was used by the Romans as an aphrodisiac?",
             A:"Tomato",
-            B:"test",
-            C:"t",
-            D:"test",
+            B:"Carrot",
+            C:"Squash",
+            D:"Broccoli",
             answer: "A",
             // – being in the Solanaceae family, which includes deadly nightshades and other poisonous plants, tomatoes were erroneously thought to be poisonous. According to the folklore, if you would eat a tomato, its poison would turn your blood into acid. Instead, the colonists used to grow tomatoes purely for decoration
             isAsked: false,
@@ -28,10 +28,10 @@ var trivia = {
         {
         // three:
             question:"What is the highest recorded jump by a kangaroo in a single leap?",
-            A:"test",
+            A:"20 feet",
             B:"9 meters",
-            C:"test",
-            D:"test",
+            C:"20 meters",
+            D:"15 meters",
             answer: "B",
                 // (30 feet)
             isAsked: false,
@@ -39,22 +39,20 @@ var trivia = {
         {
         // four: 
             question: "What is the longest movie ever made?",
-            A:"test",
-            B:"test",
+            A:"Heat",
+            B:"Pride and Prejudice",
             C:"Logistics",
-            D:"test",
-            // answer: "",
-            // options: ["A. Logistics", "B. Heat", "C. Titanic","D. Saving Private Ryan"],
+            D:"Saving Private Ryan",
             //  – at 51,420 minutes, (857 hours or 35 days and 17 hours), it is the longest movie ever made.
             answer: "C",
             isAsked: false,
         },
         {
         // five:
-            question: "Which country has beaver as the national emblem? Turkey; Peru; Canada",
-            A:"test",
-            B:"test",
-            C:"test",
+            question: "Which country has beaver as the national emblem?",
+            A:"Turkey",
+            B:"Ukraine",
+            C:"Peru",
             D:"Canada",
             answer: "D",
             //
@@ -65,38 +63,38 @@ var trivia = {
         // six: 
             question:"Which cells are situated only within the nervous system?",
             A:"Neurons",
-            B:"test",
-            C:"test",
-            D:"test",
+            B:"Red blood cells",
+            C:"White blood cells",
+            D:"iPhones",
             answer: "A",
             // – humans have around 100 billion neurons in their brain alone.
             isAsked: false
         },{ 
         // seven:
-            question: "Which is the hottest planet? Venus; Mercury; Saturn; Jupiter",
-            A:"test",
-            B:"test",
+            question: "Which is the hottest planet?",
+            A:"Mercury",
+            B:"Saturn",
             C:"Venus",
-            D:"test",
+            D:"Jupiter",
             answer: "C",
             // – although Mercury is much closer to the Sun, it has no atmosphere. The atmosphere on Venus helps retain much more of the Sun’s heat.
             isAsked: false
         }, {
         // eight: 
-            question:"Which war caused the greatest loss of life for Americans? WW1; WW2; Vietnam; The American Civil War",
+            question:"Which war caused the greatest loss of life for Americans",
             A:"The American Civil War",
-            B:"test",
-            C:"test",
-            D:"test",
+            B:"WW1",
+            C:"WW2",
+            D:"Vietnam",
             answer: "A",
             // – around 620,000 dead. This is more than WW1, WW2 and Vietnam combined.
             isAsked: false
         }, {
         // nine:
-            question:"Which continent covers the largest area? Asia; North America; Africa; South America",
-            A:"test",
-            B:"test",
-            C:"t",
+            question:"Which continent covers the largest area? Asia",
+            A:"Africa",
+            B:"North America",
+            C:"South America",
             D:"Asia",
             answer: "D",
             // – 44.58 million square kilometers, 30% of Earth’s land area.
@@ -104,9 +102,9 @@ var trivia = {
         },{ 
         // ten:
             question:"Han, Ming and Qing were ruling dynasties in which country?",
-            A:"test",
-            B:"test",
-            C:"t",
+            A:"Thailand",
+            B:"Vietnam",
+            C:"India",
             D:"China",
             answer: "D",
             //
@@ -144,6 +142,8 @@ function buildCard(){
     $("#C").html('<input type = "radio" id = "C">' + curQ.C)
     $("#D").html('<input type = "radio" id = "D">' + curQ.D)
 }
+
+
 rQuestion()
 buildCard()
 
