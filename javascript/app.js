@@ -128,6 +128,7 @@ trivia.questionsArr = trivia.questionsArr.sort(function (){return Math.random() 
 function buildCard(){
 
     clock();
+    gameOver()
     var gameDiv = $('<form class= gameDiv>');
     $("#main").empty();
     $("#main").append(gameDiv);
@@ -176,7 +177,10 @@ function gameOver(){
 
     if (curQ === 10) {
         $("#main").empty();
-        console.log("Game over")
+        console.log("Game over");
+        console.log("Correct " + trivia.correctAnswers);
+        console.log("Wrong " + trivia.wrongAnswers)
+        return;
     }
 }
 
@@ -186,32 +190,34 @@ function gameOver(){
         
        var value = $('input[name="a"]:checked').val();
         
-       if (curQ > 10) {
+    //    if (curQ > 10) {
 
-            $("#main").empty();
-            stopT()
-            alert("Game Over");
-            console.log(trivia.correctAnswers + "Correct")
-            console.log(trivia.wrongAnswers + "Wrong");
-        }
+    //         $("#main").empty();
+    //         stopT()
+    //         alert("Game Over");
+    //         console.log(trivia.correctAnswers + "Correct")
+    //         console.log(trivia.wrongAnswers + "Wrong");
+    //     }
 
         if ( value === trivia.questionsArr[curQ].answer ){
             console.log("Correct")
             trivia.correctAnswers++
             console.log(trivia.correctAnswers)
+            gameOver()
             timer = 10;
             
         }else {
             console.log("Wrong")
             trivia.wrongAnswers++
             console.log(trivia.wrongAnswers)
+            gameOver()
             timer = 10;
         }
         curQ++
 
         
 
-        gameOver();
+        // gameOver();
         buildCard();
     })
 
