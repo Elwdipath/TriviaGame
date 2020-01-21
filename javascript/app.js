@@ -118,7 +118,8 @@ var trivia = {
 
 }
 
-let timer;
+let timer = 10;
+let timerInt;
 let curQ = 0;
 trivia.questionsArr = trivia.questionsArr.sort(function (){return Math.random() - 0.5}); 
 
@@ -160,10 +161,28 @@ function buildCard(){
 
 function clock(){
     //TODO! Figure out timers....
-    clearInterval(timer);
-    timer = setInterval(buildCard, 1000 * 10);
-    console.log(timer)
+    clearInterval(timerInt);
+    timerInt = setInterval(countDown, 1000)
+    
+    // console.log(timer)
 }
+
+function countDown(){
+    var clickSubmit = document.getElementById("submit")
+    // console.log(click)
+    timer--
+    console.log(timer)
+    if (timer === 0){
+        
+        clearInterval(timerInt);
+        console.log("Times Up");
+        trivia.wrongAnswers++;
+        clickSubmit.click();
+        timer = 10;
+    }
+
+}
+
 
     $(document).on("click","#submit", function() {
         event.preventDefault()
@@ -173,10 +192,12 @@ function clock(){
             console.log("Correct")
             trivia.correctAnswers++
             console.log(trivia.correctAnswers)
+            timer = 10;
         }else {
             console.log("Wrong")
             trivia.wrongAnswers++
             console.log(trivia.wrongAnswers)
+            timer = 10;
         }
         curQ++
         // buildCard();
@@ -184,7 +205,7 @@ function clock(){
     })
 
 buildCard()
-
+// clock()
 
 //4. Start a timer of 30 secs and display question
     //4a. if question is answered correctly display correct text and increment game.correctAnswers by 1
