@@ -123,22 +123,7 @@ let timerInt;
 let curQ = 0;
 trivia.questionsArr = trivia.questionsArr.sort(function (){return Math.random() - 0.5}); 
 
-//3. Grab a random object from game.questionArr 
-// function rQuestion(){
-    
-//     var q = trivia.questionsArr.splice(Math.floor(Math.random() * trivia.questionsArr.length),1);
-//     console.log(q)
-//     curQ = q[0];
-//     // if (q.isAsked === false){
-//     //     // console.log(q);
-//     //     curQ = q
-//     //     q.isAsked = true;
-//     // }else {
-//     //     alert("Game over!")
-//     // }
 
-// }
-//display Q on the screen.
 
 function buildCard(){
 
@@ -154,7 +139,7 @@ function buildCard(){
     var submit = $('<button id = submit>');
     $(".gameDiv").append(q,a,b,c,d,submit);
     submit.text("Submit")
-
+        
     //end game logic
     
 }
@@ -183,11 +168,15 @@ function countDown(){
     }
 
 }
+
+function stopT(){
+    clearInterval(timerT)
+}
 function gameOver(){
 
     if (curQ === 10) {
-        
-        alert("Game over")
+        $("#main").empty();
+        console.log("Game over")
     }
 }
 
@@ -196,6 +185,16 @@ function gameOver(){
         console.log("test")
         
        var value = $('input[name="a"]:checked').val();
+        
+       if (curQ > 10) {
+
+            $("#main").empty();
+            stopT()
+            alert("Game Over");
+            console.log(trivia.correctAnswers + "Correct")
+            console.log(trivia.wrongAnswers + "Wrong");
+        }
+
         if ( value === trivia.questionsArr[curQ].answer ){
             console.log("Correct")
             trivia.correctAnswers++
@@ -209,6 +208,9 @@ function gameOver(){
             timer = 10;
         }
         curQ++
+
+        
+
         gameOver();
         buildCard();
     })
