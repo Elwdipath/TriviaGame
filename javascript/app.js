@@ -175,24 +175,33 @@ function countDown(){
     if (timer === 0){
         
         clearInterval(timerInt);
-        console.log("Times Up");
+        
         trivia.wrongAnswers++;
         clickSubmit.click();
         timer = 10;
+        alert("Times Up");
     }
 
 }
+function gameOver(){
 
+    if (curQ === 10) {
+        
+        alert("Game over")
+    }
+}
 
     $(document).on("click","#submit", function() {
         event.preventDefault()
         console.log("test")
+        
        var value = $('input[name="a"]:checked').val();
         if ( value === trivia.questionsArr[curQ].answer ){
             console.log("Correct")
             trivia.correctAnswers++
             console.log(trivia.correctAnswers)
             timer = 10;
+            
         }else {
             console.log("Wrong")
             trivia.wrongAnswers++
@@ -200,8 +209,8 @@ function countDown(){
             timer = 10;
         }
         curQ++
-        // buildCard();
-        setTimeout(buildCard, 2000)
+        gameOver();
+        buildCard();
     })
 
 buildCard()
