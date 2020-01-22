@@ -12,7 +12,7 @@ var trivia = {
             D:"Almond",
             answer: "C",
             context:"Peanut – peanut oil can be processed to produce glycerol, which can then be used to make nitroglycerine – an explosive liquid used in dynamite.",
-            isAsked: false,
+            // isAsked: false,
         }, 
         { 
         // two:
@@ -23,7 +23,7 @@ var trivia = {
             D:"Broccoli",
             answer: "A",
             // – being in the Solanaceae family, which includes deadly nightshades and other poisonous plants, tomatoes were erroneously thought to be poisonous. According to the folklore, if you would eat a tomato, its poison would turn your blood into acid. Instead, the colonists used to grow tomatoes purely for decoration
-            isAsked: false,
+            // isAsked: false,
         },
         {
         // three:
@@ -34,7 +34,7 @@ var trivia = {
             D:"15 meters",
             answer: "B",
                 // (30 feet)
-            isAsked: false,
+            // isAsked: false,
         },
         {
         // four: 
@@ -45,7 +45,7 @@ var trivia = {
             D:"Saving Private Ryan",
             //  – at 51,420 minutes, (857 hours or 35 days and 17 hours), it is the longest movie ever made.
             answer: "C",
-            isAsked: false,
+            // isAsked: false,
         },
         {
         // five:
@@ -57,7 +57,7 @@ var trivia = {
             answer: "D",
             //
             answer: "",
-            isAsked: false,
+            // isAsked: false,
         },
         {
         // six: 
@@ -68,7 +68,7 @@ var trivia = {
             D:"iPhones",
             answer: "A",
             // – humans have around 100 billion neurons in their brain alone.
-            isAsked: false
+            // isAsked: false
         },{ 
         // seven:
             question: "Which is the hottest planet?",
@@ -78,7 +78,7 @@ var trivia = {
             D:"Jupiter",
             answer: "C",
             // – although Mercury is much closer to the Sun, it has no atmosphere. The atmosphere on Venus helps retain much more of the Sun’s heat.
-            isAsked: false
+            // isAsked: false
         }, {
         // eight: 
             question:"Which war caused the greatest loss of life for Americans",
@@ -88,7 +88,7 @@ var trivia = {
             D:"Vietnam",
             answer: "A",
             // – around 620,000 dead. This is more than WW1, WW2 and Vietnam combined.
-            isAsked: false
+            // isAsked: false
         }, {
         // nine:
             question:"Which continent covers the largest area? Asia",
@@ -98,7 +98,7 @@ var trivia = {
             D:"Asia",
             answer: "D",
             // – 44.58 million square kilometers, 30% of Earth’s land area.
-            isAsked: false
+            // isAsked: false
         },{ 
         // ten:
             question:"Han, Ming and Qing were ruling dynasties in which country?",
@@ -108,7 +108,7 @@ var trivia = {
             D:"China",
             answer: "D",
             //
-            isAsked: false
+            // isAsked: false
         }, 
     
     ],
@@ -140,7 +140,7 @@ function buildCard(){
     var submit = $('<button id = submit>');
     $(".gameDiv").append(q,a,b,c,d,submit);
     submit.text("Submit")
-        
+    gameOver()
     //end game logic
     
 }
@@ -157,11 +157,10 @@ function countDown(){
     var clickSubmit = document.getElementById("submit")
     // console.log(click)
     timer--
+    $("#timer").html('<h3>' + timer + '</h3>')
     console.log(timer)
     if (timer === 0){
-        
         clearInterval(timerInt);
-        
         trivia.wrongAnswers++;
         clickSubmit.click();
         timer = 10;
@@ -171,16 +170,19 @@ function countDown(){
 }
 
 function stopT(){
-    clearInterval(timerT)
+    clearInterval(timer)
 }
 function gameOver(){
-
+    stopT()
     if (curQ === 10) {
         $("#main").empty();
-        console.log("Game over");
-        console.log("Correct " + trivia.correctAnswers);
-        console.log("Wrong " + trivia.wrongAnswers)
-        return;
+        // var qC = $('<h2 id = correct>' + trivia.correctAnswers + "Correct" + trivia.wrongAnswers + "Wrong" + '</h2>');
+        // var qW = $('<h2 id = wrong>' + trivia.wrongAnswers + "Wrong" + '</h2>');
+        alert("Game over " + trivia.correctAnswers + " Correct: " + trivia.wrongAnswers + " Wrong");
+        // console.log("Correct " + trivia.correctAnswers);
+        // console.log("Wrong " + trivia.wrongAnswers)
+        // $(".gameDiv").append(qC, qW)
+        
     }
 }
 
@@ -190,17 +192,9 @@ function gameOver(){
         
        var value = $('input[name="a"]:checked').val();
         
-    //    if (curQ > 10) {
-
-    //         $("#main").empty();
-    //         stopT()
-    //         alert("Game Over");
-    //         console.log(trivia.correctAnswers + "Correct")
-    //         console.log(trivia.wrongAnswers + "Wrong");
-    //     }
 
         if ( value === trivia.questionsArr[curQ].answer ){
-            console.log("Correct")
+            $("#qAnswer").text("Correct")
             trivia.correctAnswers++
             console.log(trivia.correctAnswers)
             gameOver()
@@ -214,17 +208,8 @@ function gameOver(){
             timer = 10;
         }
         curQ++
-
-        
-
         // gameOver();
         buildCard();
     })
 
 buildCard()
-// clock()
-
-//4. Start a timer of 30 secs and display question
-    //4a. if question is answered correctly display correct text and increment game.correctAnswers by 1
-    //4b. if answer is incorrect display incorrect text and increment game.wrongAnswers by 1
-    //4c. if time runs out display times up text and increment game.wrongAnswers by 1
